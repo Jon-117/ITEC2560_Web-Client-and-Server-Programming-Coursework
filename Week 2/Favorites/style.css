@@ -1,0 +1,134 @@
+body {
+    /* Comments look like this. It works on multi-line as well */
+    margin: 5em;
+    color: white;
+    background-color: black;
+    font-family: "Arial Black","Times New Roman",Georgia,fantasy;
+}
+#title-area{
+    border: solid darkred 5px;
+    border-radius: 10px;
+}
+
+b {
+    font-size: larger;
+}
+i {
+    font-size: larger;
+    font-family: Papyrus, serif;
+}
+
+li {
+    list-style-type: square;
+
+}
+
+
+
+ul {
+    background-color: dimgray;
+    border-radius: 10px;
+
+}
+
+/*
+id selectors must be preceded by an octothorp #
+ */
+#most-favorite-food {
+    color: darkred;
+    text-decoration: underline;
+}
+
+/*
+class selectors must be preceded by a period .
+ */
+.generalized {
+    color:hotpink;
+}
+
+#page-title {
+    text-shadow: 3px 3px 5px hotpink;
+    text-align: center;
+    text-decoration: none;
+}
+
+a {
+    color: cornflowerblue;
+}
+
+#favorite-music-name {
+    text-shadow: 3px 5px 5px purple;
+    font-size: larger;
+    color: midnightblue;
+}
+
+.favorite-section {
+
+    background-color: dimgrey;
+    border-radius: 10px;
+    border-color: aqua;
+    border-style: groove;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+#favorite-movie {
+    font-family: Papyrus, Serif, "Times New Roman", serif;
+    /* background-image: url("Avatar.jfif");*/
+    background-color: dimgrey;
+    border-radius: 10px;
+    background-position: bottom;
+    background-size: cover;
+    border-color: aqua;
+    border-style: groove;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    color: snow;
+}
+
+#favorite-movie-title {
+    color: midnightblue;
+    text-decoration: none;
+    font-size: 24px;
+
+}
+
+iframe {
+    display: block;
+    margin: auto;
+
+}
+
+table, th, tr, td {
+    border-style: double;
+    margin: auto;
+    padding: 10px;
+}
+th {color: dodgerblue}
+
+td {color: wheat}
+
+.coverart {
+    padding: 0;
+}
+
+.section-header {
+    color: aquamarine;
+    border-color: mediumaquamarine;
+    border-radius: 10px;
+    border-style: solid;
+    text-align: center
+}
+
+#most-favorite-food {
+    text-decoration-style: double;
+    color: purple;
+}
+
+.favorite-image {
+
+    border-radius: 10px;
+    max-width: 100%;
+
+}

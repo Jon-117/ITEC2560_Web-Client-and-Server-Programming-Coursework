@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+    font-family: Papyrus;
+    color: white;
+
+}
+h1 {
+    color: whitesmoke;
+    background-color: darkred;
+    text-align: center;
+    font-size: 30px;
+}
+
+img {
+    border-radius: 15px;
+    border-color: mediumaquamarine;
+}
+
+li {
+    list-style-type:square;
+}
