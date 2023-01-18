@@ -1,0 +1,19 @@
+:root {
+    --accent_color1: rgb(160,20,92);
+}
+
+body {
+    background-color: black;
+    color: snow;
+    font-family: 'Alumni Sans', sans-serif,'EB Garamond', serif;
+}
+
+.jumbotron {
+    background-color: var(--accent_color1);
+    color: snow;
+}
+
+.form-check{
+    background-color: var(--accent_color1);
+    color: snow
+}
