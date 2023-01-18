@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Testing</title>
+</head>
+<body>
+<!-- a form is used to send data to a server.
+input type="submit" will render as a button that submits the data.
+ -->
+<form>
+<label>Enter Your Name:
+<input type="text" required></label>
+
+<!-- Optional value attribute will set default text in a "text" type input -->
+<!-- All input types have a value that can be set -->
+
+<!-- an optional name attribute can be used in the classic method of sending data to a server,
+ however, in this class we will do so in a different way. -->
+<br>
+<label>Your Birth Date</label>
+
+<input type="date">
+<br>
+Your favorite color:
+
+<input type="color">>
+
+<label>Do you like summer?</label>
+
+<input type="checkbox">
+<br>
+<label>phone number</label>
+
+<input type="tel">
+<br>
+<label>email
+
+<input required type="email"></label>
+<br>
+<textarea rows="5" cols="30">Default text here</textarea> <!-- user changeable size. rows & cols are optional default size selectors -->
+<br>
+<!--  -->
+<select>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+
+<input name="choice" type="radio"><label>Pickup</label>
+<input name="choice" type="radio"><label>Delivery</label>
+<!-- radio buttons must be assigned a name attribute
+to make them exclusive (only one selectable option)
+in a group with the same name element-->
+<br>
+<!-- labels can be assigned to inputs by using an
+"id" in the input and a matching "for" in the label -->
+<input id="deliver-now" name="time" type="radio"><label for="deliver-now">Now</label>
+<input id="deliver-later" name="time" type="radio"><label for="deliver-later">Later</label>
+<!-- notice also that when the id and for attributes are present that we can select the text
+associated with the radio button as well as the radio button directly -->
+
+<input type="submit">
+
+</form>
+</body>
+</html>

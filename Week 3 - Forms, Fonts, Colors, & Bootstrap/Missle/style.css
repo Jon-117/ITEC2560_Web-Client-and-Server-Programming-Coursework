@@ -1,0 +1,23 @@
+#test-only {
+    border-color: dodgerblue;
+    color: dodgerblue;
+}
+
+#real-alert {
+    border-color: darkred;
+    color: red;
+}
+
+.missle-link {
+    display: block;
+    margin: 10px auto;
+    border-style: solid;
+    text-align: center;
+    padding: 20px;
+    max-width: 250px;
+}
+
+body {
+    background-color: black;
+
+}
