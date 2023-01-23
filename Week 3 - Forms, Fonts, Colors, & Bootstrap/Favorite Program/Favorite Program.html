@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jon's Favorite Program</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white">
+
+<div>
+  <h1 class="jumbotron mx-5">Grainger Truck Helper</h1>
+  <h3 class="mx-5">It saves me hours of work in manual data entry each summer.</h3>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-5">
+        <a href="Grainger Truck Helper(copy).py">Github Link</a>
+        <p>This is a small snippet of code that I use from a program I made during Python 1150. I've made a few minor edits since then, but as it serves its purpose I have not opted to upgrade again in quite a while. </p>
+        <p>Utilizing Al Sweigart's PyAutoGUI library, the program navigates a portal form for Advanced Shipment Notices which I have to send to Grainger for truck orders we ship out.</p>
+        <p>Unfortunately I don't feel comfortable showing photos or video of the program in action as there are addresses and prices involved that I cannot share. </p>
+    </div>
+
+    <div class="col-sm-7">
+    <pre>
+      <code class="mine">
+        while True:
+          entry_to_header()
+
+          while True:
+
+              begin_or_change = input('We are about to start a new loop and enter '
+                                     'the order information into the ASN Header '
+                                      'tab. \nBe sure the page is open '
+                    'and is set to zoom level 100%. \nIf you need to change the '
+                    'order information, please type "new" or you can just hit '
+                    'enter to start the loop with the previous information.\n->  ')
+
+              if begin_or_change.lower() == 'new':
+                  order_info_change()
+                  break
+              elif begin_or_change.lower() == '':
+                  break
+              else:
+                  print("That's invalid. Try again: ")
+
+
+          exit_option()
+      </code>
+    </pre>
+  </div>
+</div>
+</body>
+</html>
