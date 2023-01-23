@@ -11,53 +11,57 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@600&family=EB+Garamond&display=swap" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
-
 </head>
+
 <body class="m-4">
 <!--<input type="color">-->
 <div class="jumbotron" >
   <h1>Please provide feedback</h1>
   <p>As a student you have the option to submit anonymous feedback about your experience.</p>
 </div>
-<form class="mx-5">
-  <div>
-  <label for="student-name">Name <input name="student-name" id="student-name" class="form-control"></label>
-
-    <br><label for="student-email">E-mail <input name="student-email" id="student-email" class="form-control"></label>
-    <br><label for="comments">Comments<textarea name="comments" id="comments" required rows="4" cols="25" class="form-control"></textarea></label>
-
-    <div class="mt-5">
-      <p>Are you a current student?</p>
-      <div class="form-check">
-
-        <label class="form-check-label" for="current-student-yes">
-          <input class="form-check-input" name="current-student" type="radio" id="current-student-yes" checked>Yes
-        </label>
-      </div>
-
-    <!--
-
-     in Bootstrap, individual radio buttons have to be surrounded in a div (
-     even when grouped by name) and each level needs a particular class:
-
-     div class="form-check"
-     label class="form-check-label"
-     input class="form-check-input"
-
-     -->
-
-      <div class="form-check">
-    <br><label class="form-check-label" for="current-student-no">
-      <input class="form-check-input" name="current-student" type="radio" id="current-student-no">No
-    </label>
-    </div>
-      <input class="btn btn-outline-primary mt-4" name="submit" type="submit">
-<!--   Note that any number of classes can be added, just separate them by a space **inside** a single
- <link rel=stylesheetclass attribute.    -->
-
-    </div>
+<div class="row">
+  <div class="col-sm-6">
+    <p>As a student you have the opportunity to share your assessment of the school and your classes.</p>
+    <p>You may do so anonymously. Just leave the name and email sections blank. </p>
+    <p>If you choose not to remain anonymous you may be contacted by faculty about your assessment.</p>
   </div>
-</form>
-</div>
+  <div class="col-sm-6">
+    <form class="mx-5">
+      <div>
+        <label for="student-name">Name <input name="student-name" id="student-name" class="form-control"></label>
+        <br><label for="student-email">E-mail <input name="student-email" id="student-email" class="form-control"></label>
+        <br><label for="comments">Comments<textarea name="comments" id="comments" required rows="4" cols="25" class="form-control"></textarea></label>
+
+        <div class="mt-5">
+          <p>Are you a current student?</p>
+          <div class="form-check">
+
+            <label class="form-check-label" for="current-student-yes">
+              <input class="form-check-input" name="current-student" type="radio" id="current-student-yes" checked>Yes
+            </label>
+          </div>
+
+      <!--    in Bootstrap, individual radio buttons have to be surrounded in a div (
+       even when grouped by name) and each level needs a particular class:
+
+       div class="form-check"
+       label class="form-check-label"
+       input class="form-check-input"     -->
+
+            <div class="form-check">
+              <br>
+              <label class="form-check-label" for="current-student-no">
+                <input class="form-check-input" name="current-student" type="radio" id="current-student-no">No
+              </label>
+            </div>
+            <input class="btn btn-outline-primary mt-4" name="submit" type="submit">
+            <!--   Note that any number of classes can be added, just separate them by a space **inside** a single
+             <link rel=stylesheetclass attribute.    -->
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div> <!-- end of row -->
 </body>
 </html>

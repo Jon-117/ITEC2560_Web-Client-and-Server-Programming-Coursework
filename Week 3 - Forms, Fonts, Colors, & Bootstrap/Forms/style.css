@@ -1,5 +1,8 @@
 :root {
     --accent_color1: rgb(160,20,92);
+    /* global variables can be set in this :root section.
+    local variables must be set in their respective section;
+    ie body, .jumbotron, etc.*/
 }
 
 body {
