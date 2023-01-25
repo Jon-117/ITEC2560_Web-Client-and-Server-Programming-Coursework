@@ -6,50 +6,68 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-black text-white">
-
+<body class="bg-black text-white mx-5">
+<!-- My responsive design isn't working in Chrome tonight and I'm not sure why. Firefox manages it just fine, as does Webstorm's internal browswer 1/23/2023 -->
 <div>
   <h1 class="jumbotron mx-5">Grainger Truck Helper</h1>
   <h3 class="mx-5">It saves me hours of work in manual data entry each summer.</h3>
 </div>
+<!-- spacer -->
+<div class="spacer"><br></div>
+<div class="row"> <!-- start row 1 -->
 
-<div class="row">
-
-    <div class="col-sm-5">
-        <a href="Grainger Truck Helper(copy).py">Github Link</a>
+    <div class="col-md-6">
+        <a href="https://github.com/Jon-117/ARNA_Automation/blob/49b924a75ffb60b9de28f54247f230eaf0040a3a/Grainger%20Truck%20Helper.py">Github Link</a>
         <p>This is a small snippet of code that I use from a program I made during Python 1150. I've made a few minor edits since then, but as it serves its purpose I have not opted to upgrade again in quite a while. </p>
         <p>Utilizing Al Sweigart's PyAutoGUI library, the program navigates a portal form for Advanced Shipment Notices which I have to send to Grainger for truck orders we ship out.</p>
         <p>Unfortunately I don't feel comfortable showing photos or video of the program in action as there are addresses and prices involved that I cannot share. </p>
     </div>
-
-    <div class="col-sm-7">
+</div> <!-- end row 1 -->
+<div class="spacer"><br></div>
+<div class="row"> <!-- start row 2 -->
+    <div class="col-md-6">
     <pre>
       <code class="mine">
-        while True:
-          entry_to_header()
-
-          while True:
-
-              begin_or_change = input('We are about to start a new loop and enter '
-                                     'the order information into the ASN Header '
-                                      'tab. \nBe sure the page is open '
-                    'and is set to zoom level 100%. \nIf you need to change the '
-                    'order information, please type "new" or you can just hit '
-                    'enter to start the loop with the previous information.\n->  ')
-
-              if begin_or_change.lower() == 'new':
-                  order_info_change()
-                  break
-              elif begin_or_change.lower() == '':
-                  break
-              else:
-                  print("That's invalid. Try again: ")
-
-
-          exit_option()
+def order_info_grab():
+    order_info = {
+        'weight': input("Weight:  \n->  "),
+        'carrier': input(f"Carrier Selection - (Type one of the "
+                                  f"following:\n"
+                                  f"{carrier_dd_list}\nCarrier:  \n->  "),
+        'scac': input('SCAC or "Carrier Name":  '),
+        'bill of lading': input("Bill of Lading #:  \n->  "),
+        'pro number': input("Pro #:  \n->  "),
+        'ship date': input("Ship date MM/DD/YYYY format \n->  ")
+    }
       </code>
     </pre>
-  </div>
-</div>
+    </div>
+        <div class="col-md-6">
+        <p>This section I manually enter information which I would normally repeat anywhere from 5-50 times in a row.</p>
+        </div>
+    </div> <!-- end row 2 -->
+<div class="spacer"><br></div>
+    <div class="row"> <!-- start row 3 -->
+        <div class="col-md-6">
+            <p>This section is where I'd loop over and give myself a chance to do the manual work and to change values as needed.</p>
+        </div>
+        <div class="col-md-6">
+        <pre>
+            <code class="mine">
+                def order_info_grab():
+    order_info = {
+        'weight': input("Weight:  \n->  "),
+        'carrier': input(f"Carrier Selection - (Type one of the "
+                                  f"following:\n"
+                                  f"{carrier_dd_list}\nCarrier:  \n->  "),
+        'scac': input('SCAC or "Carrier Name":  '),
+        'bill of lading': input("Bill of Lading #:  \n->  "),
+        'pro number': input("Pro #:  \n->  "),
+        'ship date': input("Ship date MM/DD/YYYY format \n->  ")
+    }
+            </code>
+        </pre>
+        </div>
+  </div> <!-- end row 3 -->
 </body>
 </html>

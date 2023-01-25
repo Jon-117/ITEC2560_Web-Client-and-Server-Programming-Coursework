@@ -5,8 +5,14 @@ code.mine {
 
 .jumbotron {
     background-color: darkslateblue;
+    text-align: center;
 }
 
 body {
     background-color: black;
+    font-family: "Lucida Console",serif;
+}
+
+.spacer {
+    background-color: darkslateblue;
 }

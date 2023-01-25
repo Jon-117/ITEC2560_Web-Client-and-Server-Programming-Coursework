@@ -1,0 +1,20 @@
+body {
+    background-image: linear-gradient(#0eefd0, #fdf281);
+    color: black;
+    font-family: Quicksand, serif;
+}
+
+textarea {
+    background-color: white;
+    color: black;
+}
+
+input {
+    max-width: 200px;
+}
+
+img {
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px;
+}
