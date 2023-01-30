@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mouse</title>
+</head>
+
+
+
+<body>
+<p id="mouse-me">Move the mouse over this message.</p>
+<br>
+<p id="count"></p>
+<script>
+
+    let mouseover = 0
+    let mouseout = 0
+
+
+    // W3 schools taught me that it is common practice to use 'const' when declaring an array.
+    // The *array IS NOT constant.* Elements can be changed, but the *reference to the array* IS constant.
+    const mouseover_messages = [
+        "Do you always do what random strangers on the internet tell you to do?",
+        "You can feel the heat, can't you?"        ,
+        "You're in over your head.",
+        "There's no escape from the fire.",
+        "You're being consumed by the flames.",
+        "The end is near.",
+        "Scary is what we aim for!",
+        "That's to be expected.",
+        "GO AWAY",
+        "Leave me alone!",
+        "I said I'M SORRY!",
+        "Wow. You really wanted revenge, didn't you?",
+        "I'm done now."]
+
+    const mouseout_messages = [
+        "You're playing with fire!",
+        "The flames are getting higher and higher.",
+        "You're trapped in a blazing inferno.",
+        "Ha! The heat is too much to handle!",
+        "You're in a world of fire.",
+        "Thanks for playing!",
+        "Did you have fun?",
+        "Okay, really. It's OVER.",
+        "What's your problem?",
+        "I'm sorry, OKAY?",
+        "Please stop.",
+        "Alright, seriously though... "]
+
+    // select the #mouse-me paragraph
+    let message = document.querySelector('#mouse-me')
+    let count = document.querySelector('#count')
+    /* Add a mouseover event listener to change the message
+       when the mouse cursor moves over the paragraph */
+    // If Else statements have a familiar feel, following the Java style.
+
+    message.addEventListener('mouseover', function(){
+        if (mouseover < 12) {
+            message.innerHTML = mouseover_messages[mouseover]
+            console.log(mouseover + ' ' + message.innerHTML)
+            }
+        else if (mouseover == 106) {
+            console.log("User really thinks there's more to this...")
+        }
+        else if (mouseover == 209) {
+            console.log("Should we tell them? ")
+        }
+        else if (mouseover == 491) {
+            console.log("Fine, I'll tell them... ")
+        }
+        else if (mouseover >= 532) {
+            message.innerHTML = "Wow. Such persistance deserves a reward. I acknowledge your persistence. Acknowledgement is its own reward. "
+            console.log("It's an award... Really. ")
+        }
+        else {
+            message.innerHTML = mouseover_messages[12]
+            console.log('Messages expended.')
+        }
+
+
+        mouseover++
+        count.innerHTML = mouseover
+        console.log("Count continues: " + mouseover)
+
+
+
+    })
+
+    /*
+
+    Add a mouseout listener to change to a
+    different message when the cursor leaves
+
+    */
+    message.addEventListener('mouseout',function(){
+        if (mouseover <= 11) {
+            message.innerHTML = mouseout_messages[mouseout]
+            mouseout++
+        }
+        else if (mouseover >= 532) {
+            message.innerHTML = "Wow. Such persistance deserves a reward. I acknowledge your persistence. Acknowledgement is its own reward."
+        }
+        else {
+            message.innerHTML = mouseover_messages[12]
+        }
+    })
+
+</script>
+
+</body>
+</html>
