@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- HTML goes here, above the JavaScript inside the <script> element -->
+    <p id="width"></p>
+    <button>click me.</button>
+
+    <button class="extra"> Now this one</button>
+
+<script>
+    // script goes at the end so that it can work with the html elements that have been created. Going backwards does not work here.
+    let button = document.querySelector('button')
+    button.addEventListener('click', function() {
+        alert("Yeah, that's it...")
+        button.innerHTML = 'again?'
+        button.style.backgroundColor='red'
+        // button.remove()
+    })
+
+    // alternative function set up before the event listener
+    function otherButtonAction() {
+        alert("Uh huh.")
+    }
+let otherButton = document.querySelector('.extra')
+    otherButton.addEventListener('click',otherButtonAction)
+
+    function displayWidth() {
+    let width = document.body.scrollWidth;
+    let widthDisplay = document.querySelector("#width")
+    widthDisplay.innerHTML = `Window width = ${width}` // template strings are contained within backticks `like this`
+    }
+
+    displayWidth()
+
+    window.addEventListener('resize', displayWidth)
+
+</script>
+
+
+</body>
+</html>

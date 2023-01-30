@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capital Quiz</title>
+</head>
+<body>
+<p>What's the capital of Cyrodiil?</p>
+<button id="correct">The Imperial City</button>
+<button class="wrong-answer">Kvatch</button>
+<button class="wrong-answer">Leyawiin</button>
+
+<p id="result"></p>
+
+<script>
+
+
+
+  let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
+
+
+  wrongAnswerButtons.forEach(function(wrongAnswerButton){
+    wrongAnswerButton.addEventListener('click',function (){
+      result.innerHTML = 'Incorrect. Try again.'
+      correctAnswerButton.style.background = defaultButtonColor
+    })
+  })
+
+  for (let x=0; x< wrongAnswerButtons.length; x++) {
+      let  wrongAnswerButton = wrongAnswerButtons[x]
+      result.innerHTML = 'Incorrect. Try again.'
+      correctAnswerButton.style.background = defaultButtonColor
+  }
+
+
+
+  let correctAnswerButton = document.querySelector("#correct")
+  console.log(correctAnswerButton)
+  let result = document.querySelector("#result")
+  let defaultButtonColor = correctAnswerButton.style.background
+
+
+correctAnswerButton.addEventListener("click", function tion() {
+  result.innerHTML = "Correct!"
+  correctAnswerButton.style.background = "green"
+})
+
+</script>
+
+</body>
+</html>
