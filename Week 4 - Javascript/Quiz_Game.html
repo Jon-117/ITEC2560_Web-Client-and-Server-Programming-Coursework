@@ -15,35 +15,42 @@
 <script>
 
 
+    let correctAnswerButton = document.querySelector("#correct")
+    console.log(correctAnswerButton)
+    let result = document.querySelector("#result")
+    let defaultButtonColor = correctAnswerButton.style.background
 
-  let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
+    let wrongAnswerButtons = document.querySelectorAll('.wrong-answer')
 
 
-  wrongAnswerButtons.forEach(function(wrongAnswerButton){
-    wrongAnswerButton.addEventListener('click',function (){
-      result.innerHTML = 'Incorrect. Try again.'
-      correctAnswerButton.style.background = defaultButtonColor
+    /* Imperative-style loop, for-loop (similar to Java loop) */
+    for (let x=0; x< wrongAnswerButtons.length; x++) {
+        let  wrongAnswerButton = wrongAnswerButtons[x]
+
+        wrongAnswerButton.addEventListener('click',function (){
+        result.innerHTML = 'Incorrect. Try again.'
+        correctAnswerButton.style.background = defaultButtonColor
     })
-  })
+    }
 
-  for (let x=0; x< wrongAnswerButtons.length; x++) {
-      let  wrongAnswerButton = wrongAnswerButtons[x]
-      result.innerHTML = 'Incorrect. Try again.'
-      correctAnswerButton.style.background = defaultButtonColor
-  }
+  /* Functional-style Loop */
+  // wrongAnswerButtons.forEach(function(wrongAnswerButton){
+  //   wrongAnswerButton.addEventListener('click',function (){
+  //     result.innerHTML = 'Incorrect. Try again.'
+  //     correctAnswerButton.style.background = defaultButtonColor
+  //   })
+  // })
+
+    correctAnswerButton.addEventListener("click", function() {
+        result.innerHTML = "Correct!"
+        correctAnswerButton.style.background = "green"
+    })
 
 
 
-  let correctAnswerButton = document.querySelector("#correct")
-  console.log(correctAnswerButton)
-  let result = document.querySelector("#result")
-  let defaultButtonColor = correctAnswerButton.style.background
 
 
-correctAnswerButton.addEventListener("click", function tion() {
-  result.innerHTML = "Correct!"
-  correctAnswerButton.style.background = "green"
-})
+
 
 </script>
 
