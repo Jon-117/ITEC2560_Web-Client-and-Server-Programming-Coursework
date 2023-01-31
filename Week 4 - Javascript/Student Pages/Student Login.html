@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login</title>
+</head>
+<body>
+
+<p id="instruction">Please enter your name</p>
+<br>
+<label><input type="text" id="username" name="username">
+<button type="submit" id="save-user-name">Save</button></label>
+<br>
+<p id="welcome-message"></p>
+
+<script>
+
+
+  let submitButton = document.querySelector("#save-user-name")
+  let nameInput = document.querySelector("#username")
+  let message = document.querySelector('#welcome-message')
+  let instruction = document.querySelector('#instruction')
+
+  submitButton.addEventListener('click',function (){
+    instruction.innerHTML = ""
+    let name = nameInput.value
+
+    if (name.length < 2) {
+      instruction.innerHTML = "Please enter a name that is at least 2 letters long"
+    } else {
+      message.innerHTML = `Welcome, ${name}!`
+    }
+  })
+
+
+</script>
+
+
+</body>
+</html>
