@@ -53,6 +53,23 @@
 
 <script>
 
+    // assign each element with id to a const as they will not change
+    const studentNameInput = document.querySelector('#student-name')
+    const studentID = document.querySelector('#student-id')
+    const studentGPA = document.querySelector('#student-gpa')
+    const addStudentButton = document.querySelector('#add-student')
+    const studentList = document.querySelectorAll('li') // list reference is constant, but the list itself is not.
+
+    // assign  variables
+
+    let studentCount = document.querySelector('#student-count')
+
+    // display 0 in the span#student-count upon page load
+    function displayCurrentStudents() { // function defined
+        studentCount.innerHTML = studentList.length
+    }
+
+    displayCurrentStudents() // function used upon page-load
 
 
   /* Add the following functionality to this page
@@ -60,12 +77,16 @@
   [Note on HTML element notation: span#student-count means the span element with id="student-count" ]
 
   When the page loads:
-      * Using JavaScript, display 0 in the span#student-count  (1pt)
+      COMPLETE -  Using JavaScript, display 0 in the span#student-count  (1pt)
 
       * Add an event listener so that when button#add-students is clicked:
+
           - Read the value from the student-name input, save in a variable. If the name is not entered, show an alert error message and return. (1pt)
           - Read the value from the student-id input, save in a variable. If the id is not entered, show an alert error message and return. (1pt)
           - Read the value from the student-gpa input, save in a variable. If the GPA is not entered, or is not in the range 0-4, show an alert error message and return.  (1pt)
+
+                        (((Use required attribute for the three inputs --JPK)))
+
           - Create a new li element (1pt)
           - Set the innerHTML of the li element to a string containing the student's name, id, and GPA  (1pt)
               for example "Beyonce Knowles, id: aa1234bb, GPA 3.8"
