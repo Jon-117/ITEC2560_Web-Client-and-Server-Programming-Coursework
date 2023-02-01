@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A list thing!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="mx-5 my-5">
+
+<!-- COMPLETE Part 1a: Create a web page with an empty unordered list, an input text box, and button. When the user types text
+into the input form and clicks the button, the text should be added to the list, as a new list element. When the text
+has been added to the unordered list, clear the text from the input.
+-->
+<input type="text" id="new-item-input">
+<button id="add-item-button">Add item</button>
+<button id="clear-list-button">Clear List</button>
+
+<ul id="item-list"></ul>
+
+<!-- COMPLETE Part 1b: Add a clear button. When clicked, all the li elements should be removed from the page so the ul list is empty.
+-->
+<!-- COMPLETE Part 1c: Prevent the user adding more than 10 items to the list. If the clear button is clicked, the user may keep adding items.
+-->
+<!-- COMPLETE Part 1d:  Add validation using JavaScript. The form should only accept text of length between 1 and 50 characters.
+Ignore the user input if there is no text entered
+Display an alert error message if it the text too long - more than 50 characters. Do not clear the text in the input.
+-->
+
+
+<script>
+
+    let itemQuantity = 0 // for counting list items
+
+    let itemInput = document.querySelector('#new-item-input')
+    let addItemButton = document.querySelector('#add-item-button')
+    let itemList = document.querySelector('#item-list')
+    let clearListButton = document.querySelector('#clear-list-button')
+
+    addItemButton.addEventListener('click',function (){
+        if (itemQuantity < 10) { // don't allow more than 10 items.
+
+            // validate at least 1 character has been entered
+
+            if (itemInput.value.length < 1) {
+                itemInput.focus()
+                return // do nothing - ignore user and don't change textInput value.
+            }
+
+            else if (itemInput.value.length < 51){
+
+            let newText = itemInput.value
+            let newListItemElement = document.createElement('li')
+
+            newListItemElement.innerHTML = newText // set the list item text
+
+            itemList.appendChild(newListItemElement) // append item to list
+            itemInput.value = "" // clear itemInput field
+            itemQuantity++ // increase item quantity
+            itemInput.focus() // focus the text input for adding new items.
+        }
+        else {
+            alert('Input field should be 1-50 characters')
+        }
+    }
+    else {
+        alert("10 items max")
+        }})
+
+    clearListButton.addEventListener('click',function (){
+        let itemListElements = document.querySelectorAll('li')
+        itemListElements.forEach(function (element){ // clean removal of items
+            element.remove();
+        })
+        itemQuantity = 0 // reset itemQuantity
+        itemInput.focus() // refocus to itemInput
+    })
+</script>
+
+
+</body>
+</html>

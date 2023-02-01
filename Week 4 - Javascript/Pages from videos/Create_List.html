@@ -47,8 +47,14 @@ let notToDoDiv = document.querySelector('#not-to-do-div')
 let toDoQuantity = 0
 let notToDoQuantity = 0
 
+/*
+* ChatGPT helped me to figure out how to work the keyup event with multiple input fields which each have their own add button.
+* It recommends passing the `event` to the function call to send event information to the function which would make it
+* more reliable. I notice that even without it the function seems to work fine.  */
+
 document.addEventListener('keyup', function (event){
-    if (event.code === 'Enter') {
+    // if (event.keyCode === 13) { // keyCode for "Enter" is 13
+    if (event.code === 'Enter') { //
         if (document.activeElement.id === 'to-do-input') {
             toDoAdd.click()
         }
@@ -58,7 +64,7 @@ document.addEventListener('keyup', function (event){
     }
 })
 
-toDoAdd.addEventListener('click',function (){
+toDoAdd.addEventListener('click',function (){ // start of event listener toDoAdd
 
     // read the text input
     let newText = toDoInput.value
@@ -71,6 +77,7 @@ toDoAdd.addEventListener('click',function (){
             // create remove button
             let removeButton = document.createElement('button')
             removeButton.innerHTML = "Remove"
+            // ChatGPT also taught me how to add in a button when creating a new element. In this case, a remove button for each li item.
             // create new li element
             let newToDoListItem = document.createElement('li')
             // assign li text to the input value
@@ -82,10 +89,11 @@ toDoAdd.addEventListener('click',function (){
             toDoInput.value = ""
             // increase list item quantity
             toDoQuantity++
+
             // event listener for remove button
-            removeButton.addEventListener('click', function(){
+            removeButton.addEventListener('click', function(){ // start of event listener removeButton
                 newToDoListItem.remove()
-            })
+            }) // end of event listener removeButton
 
             // refocus to input
             toDoInput.focus()
@@ -98,24 +106,48 @@ toDoAdd.addEventListener('click',function (){
     }
 
 
-})
+})// end of event listener toDoAdd
 
 notToDoAdd.addEventListener('click',function (){
 
+    // read the text input
+    let newText =  notToDoInput.value
+    // validate text is entered
+    if (newText.length !== 0) {
 
 
-    if (notToDoQuantity < 10) {
-        let newText = notToDoInput.value
-        console.log("Not To Do: " + newText)
-        let newToDoListItem = document.createElement('li')
-        newToDoListItem.innerHTML = newText
-        notToDoList.appendChild(newToDoListItem)
-        notToDoInput.value = ""
-        notToDoQuantity++
-        notToDoInput.focus()
-    } else {
-        alert("You're being too restrictive. Live a little. ")
+        if ( notToDoQuantity < 10 ) {
+
+            console.log("To Do: " + newText)
+            // create remove button
+            let removeButton = document.createElement('button')
+            removeButton.innerHTML = "Remove"
+            // create new li element
+            let newToDoListItem = document.createElement('li')
+            // assign li text to the input value
+            newToDoListItem.innerHTML = newText
+            // add removeButton to new item
+            newToDoListItem.append(removeButton)
+            notToDoList.append(newToDoListItem)
+            // clear input text box
+            notToDoInput.value = ""
+            // increase list item quantity
+            notToDoQuantity++
+            // event listener for remove button
+            removeButton.addEventListener('click', function(){
+                newToDoListItem.remove()
+            })
+
+            // refocus to input
+            notToDoInput.focus()
+        } else {
+            alert("You're doing too much. Tackle what you have before adding more tasks. ")
+        }
+
+    } else { alert("Input is empty. Try again. ")
+
     }
+
 
 })
 
