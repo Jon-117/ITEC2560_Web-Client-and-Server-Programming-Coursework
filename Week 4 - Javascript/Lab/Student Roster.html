@@ -110,6 +110,7 @@
         // selectedStudents.forEach(function (element){ // why can't I use selectedStudents nodeList that I set above?
         document.querySelectorAll('.selected').forEach(function (element){
             element.remove()
+            displayCurrentStudents()
             console.log(element.textContent + ' deleted')
         })
     }
