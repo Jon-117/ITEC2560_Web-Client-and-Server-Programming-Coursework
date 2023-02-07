@@ -53,13 +53,13 @@
 
 <script>
 
-    // assign each element with id to a const as they will not change
+    // assign each element with id to a const as the references will not change
     const studentNameInput = document.querySelector('#student-name')
     const studentIdInput = document.querySelector('#student-id')
     const studentGpaInput = document.querySelector('#student-gpa')
     const addStudentButton = document.querySelector('#add-student')
     const studentList = document.querySelector('#student-list') // list reference is constant, but the list itself is not.
-    const selectedStudents = document.querySelectorAll('.selected')
+    // const selectedStudents = document.querySelectorAll('.selected')  // wasn't able to use this for the remove function...?
     const studentCount = document.querySelector('#student-count')
     const removeStudentsButton = document.querySelector('#remove-selected-students')
 
@@ -73,6 +73,7 @@
     displayCurrentStudents() // function used upon page-load
 
     function createListElement() {
+        // variables, go! (helps to make code more readable in this section.)
         let newListElement = document.createElement('li')
 
         let name = studentNameInput.value
@@ -81,6 +82,7 @@
 
         newListElement.innerHTML = `Name: ${name}  |  ID: ${id}  |  GPA: ${gpa}`
 
+        // selectable list elements event listener
         newListElement.addEventListener("click", function (){
             if (newListElement.className === 'selected') {
                 newListElement.setAttribute('class','')
@@ -91,13 +93,14 @@
                 console.log('List element "' + newListElement.textContent + '" selected. class="' + newListElement.className + '"')
             }
         })
-
+        // clear input fields
         studentNameInput.value = ''
         studentIdInput.value = ''
         studentGpaInput.value = ''
 
         studentNameInput.focus()
 
+        // add to list, log, recalculate the list length for span.
         studentList.append(newListElement)
         console.log(newListElement.innerHTML)
         displayCurrentStudents()
@@ -112,8 +115,8 @@
     }
 
 
+    // buttons do what they say
     addStudentButton.addEventListener('click',createListElement)
-
     removeStudentsButton.addEventListener('click', removeSelectedStudents)
 
 
