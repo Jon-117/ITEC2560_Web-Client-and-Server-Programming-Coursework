@@ -17,8 +17,10 @@ let iss_location = {
     "message": "success"
 }
 
-// TODO Extract the latitude value, and log it to the console.
-// TODO Extract the longitude value, and log it to the console.
+// ♥ Extract the latitude value, and log it to the console.
+console.log(iss_location.iss_position.latitude)
+// ♥ Extract the longitude value, and log it to the console.
+console.log(iss_location.iss_position.longitude)
 
 
 
@@ -36,13 +38,27 @@ let rates = {
     "CAD": 1.5194
 }
 
-// TODO write code to add a new property for Swiss Francs. Symbol is CHF, value is 1.1787.
-// TODO if you had 100 Euros, write code to get the exchange rate from the object, then calculate
+// ♥ write code to add a new property for Swiss Francs. Symbol is CHF, value is 1.1787.
+rates.CHF = 1.1787
+console.log(rates)
+// ♥ if you had 100 Euros, write code to get the exchange rate from the object, then calculate
 //      the equivalent value in Australian Dollars (AUD)
+let euros = 100
+audExchangeRate = rates.AUD
+console.log(euros * audExchangeRate)
 // TODO write code to identify the currency symbol that has the highest exchange rate compared to Euros.
 //    In other words, identify the property with the largest value. the answer is BRL (Brazilian Real) at 3.8959 BRL to 1 Euro.
+let rateArray = Object.keys(rates)
+let highest = 0
+let highestSymbol = ""
+
+console.log(`${highest}  ${highestSymbol}`)
+
+console.log(typeof rates)
 
 
+// helped me to understand loop over object better.
+// https://askjavascript.com/how-to-convert-object-to-array-of-objects-in-javascript/#:~:text=How%20to%20Convert%20Object%20to%20Array%20of%20Objects,JavaScript%20Object.entries%20%28%29%20...%204%20See%20also%20
 
 
 /* c. Use this JavaScript array of objects of cat owners, and their cats. Source, moderncat.com
