@@ -58,7 +58,7 @@
 
 <p id="order-summary">
     <!-- TODO Use JavaScript to display the order information,
-        only if all the required information is entered  -->
+          only if all the required information is entered  -->
 </p>
 
 
@@ -70,37 +70,89 @@
     let homeownerStreetNameInput = document.querySelector('#homeowner-street-name')
     let treeTypeSelect = document.querySelector('#tree-type')
 
-    // TODO create a variable for city input element
-    // TODO create a variable for zip code input element
+    // ♥ create a variable for city input element
+    let homeownerCityInput = document.querySelector('#city')
+    // ♥ create a variable for zip code input element
+    let homeownerZipInput = document.querySelector('#zipcode')
+
 
     let submitButton = document.querySelector('#submit-order')
 
     let orderSummaryParagraph = document.querySelector('#order-summary')
 
+    let errors = []
+
+    function minnesotaZipCheck(zip){
+            if (isNaN(zip) || (zip < 55001 || zip > 56763)){ // check that zip is a number and that it is in range
+                    homeownerZipInput.setAttribute('class','error')
+                    errors.push(`Zip Code must be a Minnesotan zip code in numerical format`)
+            }
+    }
+    function emptyFieldCheck(){
+            fields = [homeownerNameInput,homeownerHouseNumberInput,homeownerStreetNameInput,homeownerCityInput, homeownerZipInput,treeTypeSelect]
+
+            fields.forEach(field =>{
+                    if (field.value === '') {
+                            field.setAttribute('class','error')
+                            errors.push(`${field.id} empty`)
+                    } else {
+                            field.setAttribute('class','')
+                            // console.log(`${field.id} filled:  ${field.value}`)
+                    }
+            })
+
+    }
+
     submitButton.addEventListener('click', function() {
 
-        let name = homeownerNameInput.value
-        let houseNumber = homeownerHouseNumberInput.value
-        let streetName = homeownerStreetNameInput.value
-        let treeType = treeTypeSelect.value
+            let name = homeownerNameInput.value
+            let houseNumber = homeownerHouseNumberInput.value
+            let streetName = homeownerStreetNameInput.value
+            let treeType = treeTypeSelect.value
+            // console.log(name)
+        // ♥ get the value from the input#city
+             let city = homeownerCityInput.value
+        // ♥ get the value from the input#zipcode
+             let zip = homeownerZipInput.value
 
-        // TODO get the value from the input#city
-        // TODO get the value from the input#zipcode
+            /*
+            ♥ Validate that all six input and select elements have been completed
+                check they all have a value
+            */
 
-        // TODO Validate that all six input and select elements have been completed
-        //  - check they all have a value
 
-        // TODO Validate the zipcode is in the range 55001 and 56763.
-        // to check that the zip code is in Minnesota.
-        // Make sure your script doesn't accept non-numeric input for the zip code.
+            emptyFieldCheck()
+            minnesotaZipCheck(zip)
 
-        // Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
-        // to give the user visual feedback for which inputs need to be fixed or completed.
-        // There's a style for input.error and select.error defined in the styles (in the head)
-        // which will be applied if you give the class .error to any elements on the page.
-        // Make sure you remove this class when the form is completed correctly.
+            if (errors.length > 0) {
+                    alert(errors.join('\n'))
+            }
+            else {
+                    orderSummaryParagraph.innerHTML =
+                            `<p>Name: ${name}</p>
+                            <p>Address: ${houseNumber} ${streetName}</p>
+                            <p>City: ${city}</p>
+                            <p>Zip: ${zip}</p>
 
-        let errors = []
+                            <p>Tree ordered: ${treeType}</p>`
+            }
+
+            errors = []
+
+        /* ♥ Validate the zipcode is in the range 55001 and 56763.
+            to check that the zip code is in Minnesota.
+            Make sure your script doesn't accept non-numeric input for the zip code.
+         */
+
+
+        /* Optional extra: add the class .error to any inputs with an error (and only inputs with an error)
+            to give the user visual feedback for which inputs need to be fixed or completed.
+            There's a style for input.error and select.error defined in the styles (in the head)
+            which will be applied if you give the class .error to any elements on the page.
+            Make sure you remove this class when the form is completed correctly.
+        */
+
+
 
         // If a form element has not been completed, or if the data is not valid,
         // add an error message to the errors array. (Hint: use push to add to the end of the array)
