@@ -71,23 +71,21 @@ let cats_and_owners = [
     { name: "Snoop Dogg", cat: "Miles Davis" }
 ]
 
-// TODO print Gary Oldman's cat's name
-// TODO Taylor Swift's cat is called 'Meredith'. Write code to add this data to the array.
-// TODO write a loop to print each cat owner, and their cat's name, one per line. Use the forEach style.
+// ♥ print Gary Oldman's cat's name
+console.log(cats_and_owners[0].cat)
+// ♥ Taylor Swift's cat is called 'Meredith'. Write code to add this data to the array.
+cats_and_owners.push({name: "Taylor Swift", cat: "Meredith"})
+console.log(cats_and_owners[4])
+// ♥ write a loop to print each cat owner, and their cat's name, one per line. Use the forEach style.
 //   Each line should have a message like "Snoop Dogg's cat is called Miles Davis"
-
+cats_and_owners.forEach(pair =>{
+    console.log(`${pair.name} owns a cat named ${pair.cat}`)
+})
 
 
 /* d. Use the following JSON object, describing the Nobel Prize winners in 2017.
 Source http://api.nobelprize.org/v1/prize.json?year=2017
 * */
-
-// TODO print the full name of the Literature Nobel laureate.
-// TODO print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
-// TODO write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
-// TODO write code to print the total number of prize categories
-// TODO write code to count the total number of laureates from 2017.
-//   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
 
 
 let nobel_prize_winners_2017 = {
@@ -214,3 +212,40 @@ let nobel_prize_winners_2017 = {
         }
     ]
 }
+// TODO print the full name of the Literature Nobel laureate.
+totalPrizes = 0
+totalCategories = 0
+totalLaureates = 0
+categories = []
+
+ nobel_prize_winners_2017.prizes.forEach(prize => {
+     winners = [] // winners per prize
+     
+     prize.laureates.forEach(laureate => { // selecting winners per prize. ID & Name
+     
+     
+     })
+     
+     category = prize.category
+     // new categories tracking
+     if (!categories.contains(category)){
+         categories.push()
+     }
+     
+     
+     if (category === 'literature' || category === 'physics') {
+         prize.laureates.forEach(laureate =>{
+             laureateNameID = `${laureate.firstname} ${laureate.surname}, ID: ${laureate.id}`
+             winners.push(winners)
+             console.log(`The Nobel Prize for ${category} went to ${winners.join(', ')}`)
+         })
+     }
+     
+     
+     
+ })
+// TODO print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
+// TODO write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
+// TODO write code to print the total number of prize categories
+// TODO write code to count the total number of laureates from 2017.
+//   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
