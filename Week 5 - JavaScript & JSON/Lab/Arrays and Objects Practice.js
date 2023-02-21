@@ -63,10 +63,6 @@ console.log(maxSymbol);
 
 
 
-// helped me to understand loop over object better.
-// https://askjavascript.com/how-to-convert-object-to-array-of-objects-in-javascript/#:~:text=How%20to%20Convert%20Object%20to%20Array%20of%20Objects,JavaScript%20Object.entries%20%28%29%20...%204%20See%20also%20
-
-
 /* c. Use this JavaScript array of objects of cat owners, and their cats. Source, moderncat.com
  */
 
