@@ -48,13 +48,19 @@ audExchangeRate = rates.AUD
 console.log(euros * audExchangeRate)
 // TODO write code to identify the currency symbol that has the highest exchange rate compared to Euros.
 //    In other words, identify the property with the largest value. the answer is BRL (Brazilian Real) at 3.8959 BRL to 1 Euro.
-let rateArray = Object.keys(rates)
-let highest = 0
-let highestSymbol = ""
 
-console.log(`${highest}  ${highestSymbol}`)
+// thanks to stackoverflow community for setting me straight... https://stackoverflow.com/questions/684672/how-do-i-loop-through-or-enumerate-a-javascript-object
 
-console.log(typeof rates)
+let maxRate = 0;
+let maxSymbol = "";
+for (let symbol in rates) { // I still naturally go to try rates.forEach() which obviously doesn't work.
+    if (rates[symbol] > maxRate) {
+        maxRate = rates[symbol];
+        maxSymbol = symbol;
+    }
+}
+console.log(maxSymbol);
+
 
 
 // helped me to understand loop over object better.
@@ -72,10 +78,10 @@ let cats_and_owners = [
 ]
 
 // ♥ print Gary Oldman's cat's name
-console.log(cats_and_owners[0].cat)
+console.log(cats_and_owners[1].cat)
 // ♥ Taylor Swift's cat is called 'Meredith'. Write code to add this data to the array.
 cats_and_owners.push({name: "Taylor Swift", cat: "Meredith"})
-console.log(cats_and_owners[4])
+// console.log(cats_and_owners[4])
 // ♥ write a loop to print each cat owner, and their cat's name, one per line. Use the forEach style.
 //   Each line should have a message like "Snoop Dogg's cat is called Miles Davis"
 cats_and_owners.forEach(pair =>{
@@ -213,39 +219,32 @@ let nobel_prize_winners_2017 = {
     ]
 }
 // TODO print the full name of the Literature Nobel laureate.
-totalPrizes = 0
-totalCategories = 0
-totalLaureates = 0
-categories = []
+let firstName = nobel_prize_winners_2017.prizes[3].laureates[0].firstname
+let lastName = nobel_prize_winners_2017.prizes[3].laureates[0].surname
+console.log(`${firstName} ${lastName}`);
 
- nobel_prize_winners_2017.prizes.forEach(prize => {
-     winners = [] // winners per prize
-     
-     prize.laureates.forEach(laureate => { // selecting winners per prize. ID & Name
-     
-     
-     })
-     
-     category = prize.category
-     // new categories tracking
-     if (!categories.contains(category)){
-         categories.push()
-     }
-     
-     
-     if (category === 'literature' || category === 'physics') {
-         prize.laureates.forEach(laureate =>{
-             laureateNameID = `${laureate.firstname} ${laureate.surname}, ID: ${laureate.id}`
-             winners.push(winners)
-             console.log(`The Nobel Prize for ${category} went to ${winners.join(', ')}`)
-         })
-     }
-     
-     
-     
- })
+
 // TODO print the ids of each of the Physics Nobel laureates. Your code should still work without modification if a laureate was added, or removed.
+for (let laureate of nobel_prize_winners_2017.prizes[0].laureates) { // back to classic Java for loops. Less confusing.
+    console.log(laureate.id);
+}
+
+
 // TODO write code to print the names of all of the prize categories (So your output would start physics, chemistry, medicine... ).
+for (let prize of nobel_prize_winners_2017.prizes) {
+    console.log(prize.category);
+}
 // TODO write code to print the total number of prize categories
+console.log(nobel_prize_winners_2017.prizes.length);
+
+
 // TODO write code to count the total number of laureates from 2017.
 //   have a good look at how the JSON is structured, and think about what loop(s) you'll need to write.
+let count = 0;
+for (let prize of nobel_prize_winners_2017.prizes) {
+    count += prize.laureates.length; // I didn't need to loop and count each laureate, just count the length of each list.
+}
+console.log(count);
+
+
+
