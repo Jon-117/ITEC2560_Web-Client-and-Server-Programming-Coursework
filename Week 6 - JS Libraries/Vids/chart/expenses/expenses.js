@@ -16,7 +16,7 @@ let expenseChart = new Chart(ctx, {
                 datasets: [
                         {
                                 data: [],
-                                backgroundColors: []
+                                backgroundColor: []
                         }
                 ],
                 labels: []
@@ -33,6 +33,11 @@ function addExpenseToChart(name, amount) {
         // TODO add expense to chart
         expenseChart.data.labels.push(name)
         expenseChart.data.datasets[0].data.push(amount)
+        
+        let colorCount = expenseChart.data.datasets[0].backgroundColor.length
+        let color = chartColors[colorCount % chartColors.length]
+        
+        expenseChart.data.datasets[0].backgroundColor.push(color)
         
         expenseChart.update()
 }
@@ -71,3 +76,13 @@ addExpenseButton.addEventListener('click', function() {
 
 
 // TODO add event listener to click the Add Expense button when the enter key is pressed
+window.addEventListener("keyup", function (){
+        if (event.keyCode === 13) {
+                
+                let inputElements = [expenseNameInput,expenseAmountInput, addExpenseButton]
+                if (inputElements.includes(document.activeElement)){
+                        addExpenseButton.click()
+                        expenseNameInput.focus()
+                }
+}
+                                           })
