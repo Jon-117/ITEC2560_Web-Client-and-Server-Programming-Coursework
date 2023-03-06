@@ -59,7 +59,7 @@ addExpenseButton.addEventListener('click', function() {
                 errors.push('Enter a positive amount for the expense')
         }
         
-        // If any errors, alert and return - do not procede to add to chart
+        // If any errors, alert and return - do not proceed to add to chart
         if (errors.length > 0) {
                 alert( errors.join('\n') )
                 return
@@ -86,3 +86,8 @@ window.addEventListener("keyup", function (){
                 }
 }
                                            })
+
+// Add event listener to resize chart canvas
+window.addEventListener('resize', function() {
+        expenseChart.resize();
+});
