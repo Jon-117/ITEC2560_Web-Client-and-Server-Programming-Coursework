@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Bridge Map</title>
+
+
+
+
     <!-- Leaflet script and CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+    <!-- Bar Chart script and CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+    <script async defer content="text/javascript" src="bridge-map.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- My script and CSS link -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <script async defer src="bridge-map.js"></script>
+
+
 
 </head>
 <body>
 <div id="bridge_map"></div>     <!-- Using div rather than canvas messed me up for a while.  -->
 
+<canvas id="chart"></canvas>
 </body>
 </html>

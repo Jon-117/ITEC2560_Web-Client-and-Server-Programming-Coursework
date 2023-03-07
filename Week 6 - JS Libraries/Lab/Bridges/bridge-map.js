@@ -84,3 +84,33 @@ bridges.forEach( bridge => {
                 L.marker(location,{icon:bridgeIcon}).bindPopup(`${name}<br>${span} <br>${cityState}`).addTo(map)
         }
 })
+
+
+let chart = document.querySelector('#chart')
+let ctx = chart.getContext('2d')
+
+let spanChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+                datasets: [
+                        {
+                                data: [],
+                                backgroundColor: []
+                        }
+                ],
+                labels: []
+        },
+        options: {}
+})
+
+bridges.forEach(bridge => {
+        let location = bridge.location
+        let name = bridge.name
+        let cityState = bridge.cityState
+        let span = bridge.span
+
+        spanChart.data.labels.push(span)
+        spanChart.data.datasets[0].data.push(name)
+
+        spanChart.update()
+})
