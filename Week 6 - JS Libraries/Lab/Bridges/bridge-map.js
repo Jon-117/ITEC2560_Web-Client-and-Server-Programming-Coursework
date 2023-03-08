@@ -1,3 +1,4 @@
+// Set icons
 var bridgeIcon = L.icon({
         iconUrl: 'bridge.png', // https://www.flaticon.com/
         iconSize:     [30, 30],
@@ -21,7 +22,7 @@ let zoomLevel = 3               // 1=whole world     20=city blocks
 // create the map
 let map = L.map('bridge_map').setView(mapCenter,zoomLevel)
 
-// set the view - show the world
+// set the view - show the world tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -71,21 +72,22 @@ bridges.forEach( bridge => {
         }
 })
 console.log(longest + ' ' + longestSpan)
+
 // create the map markers
 bridges.forEach( bridge => {
         let location = bridge.location
         let name = bridge.name
         let cityState = bridge.cityState
         let span = bridge.span
-        if (name = longest){
-                console.log(bridge.name) // why does it only log the longest name, but it still puts the correct info on the marker???
+        if (name == longest){ // be sure to check, not assign, the bridge name
+                console.log(name)
                 L.marker(location,{icon:longestBridgeIcon}).bindPopup(`${name}<br>${span} <br>${cityState}`).addTo(map)
         } else {
                 L.marker(location,{icon:bridgeIcon}).bindPopup(`${name}<br>${span} <br>${cityState}`).addTo(map)
         }
 })
 
-
+// create the bar chart
 let chart = document.querySelector('#chart')
 let ctx = chart.getContext('2d')
 
@@ -93,24 +95,32 @@ let spanChart = new Chart(ctx, {
         type: 'bar',
         data: {
                 datasets: [
-                        {
+                        {       yaxisID: 'yAxis',
                                 data: [],
                                 backgroundColor: []
                         }
                 ],
                 labels: []
         },
-        options: {}
+        options: {
+                scales: {
+                        y: { // set min and max char values ~100 above and below min and max for larger dataset
+                                min: 500,
+                                max: 2100
+                        }
+                },
+                
+        }
 })
 
+// loop the bridges to push to chart.
 bridges.forEach(bridge => {
-        let location = bridge.location
         let name = bridge.name
-        let cityState = bridge.cityState
         let span = bridge.span
 
-        spanChart.data.labels.push(span)
-        spanChart.data.datasets[0].data.push(name)
+        spanChart.data.labels.push(name)
+        spanChart.data.datasets[0].data.push(span)
 
         spanChart.update()
 })
+
