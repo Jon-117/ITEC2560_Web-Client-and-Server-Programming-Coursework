@@ -1,0 +1,21 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TIME!</title>
+</head>
+<body>
+<h1>The time is... </h1>
+<p id="time"></p>
+
+<script>
+    let timeElement= document.querySelector('#time')
+    setInterval( () => {
+          let date = Date()
+            timeElement.innerHTML = date
+    },1000)
+</script>
+</body>
+</html>
