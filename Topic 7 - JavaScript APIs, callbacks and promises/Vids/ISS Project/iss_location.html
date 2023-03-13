@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Where's it at?!</title>
+    <!-- leaflet links -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <!-- fetch link -->
+    <script async defer src="fetch.js"> </script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+    <h1>ISS Location</h1>
+    <div>
+        <p>Lattitude: <span id="iss-lat"></span> </p>
+        <p>Longitude: <span id="iss-long"></span> </p>
+        <p>Date: <span id="date"></span> </p>
+
+    </div>
+
+    <div id="map"></div>
+
+    <div id="LiveVid">
+        <iframe width="480" height="270" src="http://www.ustream.tv/embed/17074538" scrolling="no" allowfullscreen webkitallowfullscreen frameborder="0" style="border: 0 none transparent;"></iframe>
+    </div>
+</body>
+</html>
