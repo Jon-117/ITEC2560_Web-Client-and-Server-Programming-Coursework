@@ -37,6 +37,10 @@ function iss(attempts) {
                         })
                         .then(issData => { // json information is automatically sent to subsequent .then() calls. Here we assign it the designation issData. The .json() method returns another promise.
                                 console.log(issData)
+
+                                // TODO - Add polyline tracer to the map. Remove last version of it
+                                //  (if it already exists), then add the updated version again.
+
                                 let lat = issData.latitude
                                 let long = issData.longitude
                                 date = Date()
