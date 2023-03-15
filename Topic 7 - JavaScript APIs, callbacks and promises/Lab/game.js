@@ -9,7 +9,7 @@ let resultTextElement = document.querySelector('#result')
 //  organized in the order of the script tags. So the countriesAndCodes array from countries.js
 //  is available to this script.
 
-console.log(countriesAndCodes)  // You don't need to log countriesAndCodes - just proving it is available 
+// console.log(countriesAndCodes)  // You don't need to log countriesAndCodes - just proving it is available
 
 // Declarations
 let playAgainButton = document.querySelector('#play-again-button')
@@ -45,7 +45,7 @@ submitButton.addEventListener('click', function (e) { // event listener for butt
     url = `https://api.worldbank.org/v2/country/${randomCountryLetters}?format=json` // set url each time submit click
     fetch(url)
         .then( response => {
-        console.log(response)
+        // console.log(response)
         if (!response.ok) {alert('Error - network response failed')} // alert if bad response
         return response.json() // return the json object
         })
