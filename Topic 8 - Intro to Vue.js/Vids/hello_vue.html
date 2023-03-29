@@ -14,7 +14,7 @@
         <!-- Page elements that vue will manage -->
         <h1>Hello, Vue!</h1>
 
-        <p>{{messageWithExclamationPoints}}</p>
+        <p>{{messageWithPoints}}</p>
 
         <button v-on:click="addExclamationPoints">Add !</button>
         <button v-on:click="clear">Clear</button>
@@ -22,12 +22,42 @@
 
     <script>
         let app = Vue.createApp({
+
+
+
                 data() {
                         return {
-                                message: 'hi'
+                                message: 'hi',
+                                exclamationPoints: 0,
+                                maxExclamationPoints: 10,
+                                messageWithExclamation:""
                         }
-                }
-        })
+                },
+                methods: {
+                        addExclamationPoints: function () {
+                                this.exclamationPoints++
+                        },
+
+                        clear: function () {
+                                this.exclamationPoints = 0
+                        }
+                },
+                computed: {
+                        messageWithPoints() {
+
+                                if (this.exclamationPoints <= this.maxExclamationPoints) {
+                                        messageWithExclamation = this.message
+                                        for (let x = 0; x <= this.exclamationPoints; x++) {
+                                                messageWithExclamation = messageWithExclamation + "!"
+                                        }
+                                        return messageWithExclamation
+                                }
+                                else {
+                                        return messageWithExclamation
+                                }
+                                }
+                        }
+                })
 
         app.mount('#app')
 
