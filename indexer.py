@@ -1,6 +1,6 @@
 import os
 PATH = os.environ.get('LOCALPATH')
-HEADER = "ITEC2560_Web-Client-and-Server-Programming-Coursework"
+HEADER = "Jon Koch ITEC 2560\n"
 
 
 def generate_html_index(folder_path, base_url):
@@ -10,7 +10,7 @@ def generate_html_index(folder_path, base_url):
     # Create a string to hold the HTML code for the index page
     html_str = f"""<html>
 <head>
-    <title>Index of {folder_path.replace(PATH,HEADER)}</title>
+    <title>{folder_path.replace(PATH,HEADER)}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,7 +28,7 @@ def generate_html_index(folder_path, base_url):
 </head>
 <body>
 <div class="container">
-    <h1>Index of {folder_path.replace(PATH,HEADER)}</h1>
+    <h1>{folder_path.replace(PATH,HEADER)}</h1>
     <ul class="list-group">
 """
 
