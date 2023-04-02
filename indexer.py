@@ -1,6 +1,6 @@
 import os
 PATH = os.environ.get('LOCALPATH')
-HEADER = "Jon Koch ITEC 2560\n"
+HEADER = "Jon Koch ITEC 2560\\n"
 
 
 def generate_html_index(folder_path, base_url):
