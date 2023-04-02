@@ -4,6 +4,11 @@ HEADER = "Jon Koch - ITEC 2560"
 
 
 def generate_html_index(folder_path, base_url):
+    # Get the parent folder path
+    parent_path = os.path.abspath(os.path.join(folder_path, os.pardir))
+    # Get the parent folder name
+    parent_name = os.path.basename(parent_path)
+
     # List all the files and folders in the current directory
     contents = os.listdir(folder_path)
 
@@ -30,6 +35,16 @@ def generate_html_index(folder_path, base_url):
 <div class="container">
     <h1>{HEADER}</h1>
     <h2>{folder_path.replace(PATH,"")}</h2>
+    """
+
+    # Add a back button to the page
+    if folder_path != root_folder_path:
+        html_str += f"""
+        <p><a href="{base_url}{os.path.basename(parent_path)}/index.html"><i class="fas fa-arrow-up"></i> Back to {parent_name}</a></p>
+        """
+
+    # Add the list of contents to the page
+    html_str += f"""
     <ul class="list-group">
 """
 
@@ -53,6 +68,10 @@ def generate_html_index(folder_path, base_url):
                 f.write(child_index_str)
         # Check if the item is a file
         elif os.path.isfile(os.path.join(folder_path, item)):
+            # Don't include the link to the current index file
+            if item.endswith('index.html'):
+                continue
+
             # Add a link to the file to the current index page
             html_str += f"""
             <li class="list-group-item">
