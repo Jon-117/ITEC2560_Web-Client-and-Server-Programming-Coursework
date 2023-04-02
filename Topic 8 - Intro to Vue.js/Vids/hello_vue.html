@@ -29,7 +29,7 @@
                         return {
                                 message: 'hi',
                                 exclamationPoints: 0,
-                                maxExclamationPoints: 10,
+                                maxExclamationPoints: 3,
                                 messageWithExclamation:""
                         }
                 },
@@ -45,9 +45,10 @@
                 computed: {
                         messageWithPoints() {
 
+
                                 if (this.exclamationPoints <= this.maxExclamationPoints) {
                                         messageWithExclamation = this.message
-                                        for (let x = 0; x <= this.exclamationPoints; x++) {
+                                        for (let x = 0; x < this.exclamationPoints; x++) {
                                                 messageWithExclamation = messageWithExclamation + "!"
                                         }
                                         return messageWithExclamation
