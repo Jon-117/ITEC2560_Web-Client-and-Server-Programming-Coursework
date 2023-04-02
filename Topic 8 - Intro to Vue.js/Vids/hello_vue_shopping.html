@@ -6,11 +6,39 @@
 
     <script src="https://unpkg.com/vue@next"></script>
 
+    <style>
+        td, th {
+            border: solid black 1px
+        }
+        table {
+            border: solid black 3px
+        }
+    </style>
+
 </head>
 <body>
 
     <div id="app">
 
+        <table>
+
+            <tr>
+                <th>Item</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+
+            <tr>
+                <td>{{ name }}</td>
+                <td>${{ unit_price }}</td>
+                <td>
+                    <input type="number" v-model="quantity">
+                </td>  <!--todo come back here - add input -->
+                <td>${{ total }}</td>
+            </tr>
+
+        </table>
 
     </div>
 
@@ -19,7 +47,10 @@
             let app = Vue.createApp({
                     data(){
                             return {
-                                    name: '' //empty string
+                                    name: 'Hat', //empty string
+                                    quantity: 1,
+                                    unit_price: 5
+
                             }
                             },
                     methods: {
@@ -27,6 +58,15 @@
                                     this.name = ''
                                     inputElement.focus() // is this not functional inside a Vue method?
                             }
+                    },
+                    computed: {
+                            total: function (){
+                                    if (this.quantity >= 0){
+                                            return (this.quantity * this.unit_price).toFixed(2)
+                                    }
+                                    else {return "Quantity Error"}
+                            }
+
                     }
             })
 
