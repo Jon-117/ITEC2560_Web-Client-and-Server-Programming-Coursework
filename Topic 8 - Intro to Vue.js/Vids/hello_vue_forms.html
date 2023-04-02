@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, Vue Forms!</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+    <div id="app">
+
+        <!-- Page elements that vue will manage -->
+        <h1>Hello, Vue Forms!</h1>
+
+        <label for="name">Please enter your name: </label>
+        <input v-model="name" id="name" autofocus>  <!-- v-model sets up two-way data-binding -->
+
+        <p v-if="name">  <!-- v-if takes conditional statements and only renders the HTML element if it is true -->
+            Your name is {{name}}
+        </p>
+        <p v-else>Waiting for input{{dots}}</p>
+
+        <button v-on:click="clear" v-if="name">Clear Input</button>
+    </div>
+
+    <script>
+
+            let inputElement = document.querySelector("#name")
+
+            let app = Vue.createApp({
+                    data(){
+                            return {
+                                    name: '' //empty string
+                            }
+                            },
+                    methods: {
+                            clear(){
+                                    this.name = ''
+                                    inputElement.focus() // is this not functional inside a Vue method?
+                            }
+                    }
+            })
+
+            app.mount('#app')
+
+    </script>
+
+</body>
+</html>
