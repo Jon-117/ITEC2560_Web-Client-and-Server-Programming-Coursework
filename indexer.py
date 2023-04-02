@@ -1,97 +1,78 @@
 import os
+PATH = os.environ.get('LOCALPATH')
+HEADER = "ITEC2560_Web-Client-and-Server-Programming-Coursework"
 
-def create_index_html(dir_path):
-    """
-    Recursively generates an HTML index of folders and files in a directory and its subdirectories, along with their
-    relative paths, and writes it to an index.html file in each directory.
-    """
-    # Get the current working directory
-    cwd = os.getcwd()
 
-    # Change to the specified directory
-    os.chdir(dir_path)
+def generate_html_index(folder_path, base_url):
+    # List all the files and folders in the current directory
+    contents = os.listdir(folder_path)
 
-    # Get a list of all directories and files in the specified directory
-    entries = os.listdir()
+    # Create a string to hold the HTML code for the index page
+    html_str = f"""<html>
+<head>
+    <title>Index of {folder_path.replace(PATH,HEADER)}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {{
+            margin: 0;
+            padding: 0;
+        }}
+        .container {{
+            padding: 20px;
+        }}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Index of {folder_path.replace(PATH,HEADER)}</h1>
+    <ul class="list-group">
+"""
 
-    # Sort the entries alphabetically
-    entries.sort()
-
-    # Create an empty list to store the HTML entries
-    html_entries = []
-
-    # Loop through the entries
-    for entry in entries:
-        # Ignore hidden files (i.e., files starting with a ".")
-        if entry.startswith("."):
+    # Iterate over the contents of the current directory
+    for item in contents:
+        # Skip hidden items.
+        if item.startswith("."):
             continue
+        # Check if the item is a folder
+        if os.path.isdir(os.path.join(folder_path, item)):
+            # Recursively call the function to generate an index page for the child folder
+            child_index_str = generate_html_index(os.path.join(folder_path, item), base_url + item + "/")
+            # Add a link to the child index page to the current index page
+            html_str += f"""
+            <li class="list-group-item">
+                <a href="{base_url}{item}/index.html"><i class="fas fa-folder"></i> {item}</a>
+            </li>
+            """
+            # Write the child index page to disk
+            with open(os.path.join(folder_path, item, "index.html"), "w") as f:
+                f.write(child_index_str)
+        # Check if the item is a file
+        elif os.path.isfile(os.path.join(folder_path, item)):
+            # Add a link to the file to the current index page
+            html_str += f"""
+            <li class="list-group-item">
+                <a href="{base_url}{item}"><i class="fas fa-file"></i> {item}</a>
+            </li>
+            """
 
-        # Get the full path of the entry
-        full_path = os.path.join(dir_path, entry)
+    # Add a closing tag for the unordered list and the body and html tags
+    html_str += """
+    </ul>
+</div>
+</body>
+</html>
+"""
 
-        # Get the relative path of the entry
-        rel_path = os.path.relpath(full_path, start=cwd)
-
-        # If the entry is a directory, add a link to the HTML entries list
-        if os.path.isdir(full_path):
-            # Generate an index.html file for the subdirectory
-            create_index_html(full_path)
-
-            # Create an expandable list of child directories
-            child_dirs = []
-            for child_entry in os.listdir(full_path):
-                child_full_path = os.path.join(full_path, child_entry)
-                if os.path.isdir(child_full_path):
-                    child_rel_path = os.path.relpath(child_full_path, start=cwd)
-                    child_index_path = os.path.join(child_full_path, "index.html")
-                    child_dirs.append(f'<li><a href="{child_rel_path}/">{child_entry}/</a></li>')
-            if child_dirs:
-                child_dir_list = '<ul style="display: none;">' + ''.join(child_dirs) + '</ul>'
-                html_entries.append(f'<li><a href="{rel_path}/">{entry}/</a>{child_dir_list}</li>')
-            else:
-                html_entries.append(f'<li><a href="{rel_path}/">{entry}/</a></li>')
-        # If the entry is a file, add a link to the HTML entries list if it's a supported type
-        elif os.path.isfile(full_path):
-            if entry.endswith(".html") or entry.endswith(".css") or entry.endswith(".js"):
-                html_entries.append(f'<li><a href="{rel_path}">{entry}</a></li>')
-
-    # Change back to the original working directory
-    os.chdir(cwd)
-
-    # Create the HTML index
-    html_index = f"""
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <title>Index of {dir_path}</title>
-                <script>
-                    function toggleFolder(evt) {{
-                        var folder = evt.target.nextElementSibling;
-                        if (folder.style.display === "none") {{
-                            folder.style.display = "block";
-                        }} else {{
-                            folder.style.display = "none";
-                        }}
-                    }}
-                </script>
-            </head>
-            <body>
-                <h1>Index of {dir_path}</h1>
-                <ul>
-                    {''.join(html_entries)}
-                </ul>
-            </body>
-        </html>
-    """
-
-    # Write the HTML index to a file
-    with open("index.html", 'w') as f:
-        f.write(html_index)
-
-    return html_index
+    # Return the HTML code for the current index page
+    return html_str
 
 
-
-
-var = "fj"
-
+root_folder_path = os.getcwd()
+base_url = "https://jon-117.github.io/ITEC2560_Web-Client-and-Server-Programming-Coursework/"
+index_str = generate_html_index(root_folder_path, base_url)
+with open(os.path.join(root_folder_path, "index.html"), "w") as f:
+    f.write(index_str)

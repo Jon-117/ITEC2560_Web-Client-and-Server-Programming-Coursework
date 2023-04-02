@@ -1,0 +1,4 @@
+The warning means that a developer has tried to access a property which does not exist inside a template. The warning should not be ignored as it could cause errors or other unexpected bugs. The property should be located inside data or computed in the view model, if it's not then it must be either created or moved there. 
+
+
+
