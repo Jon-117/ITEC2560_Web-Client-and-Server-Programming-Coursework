@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, Vue Loops!</title>
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <style>
+        td, th {
+            border: solid black 1px;
+            width: 50%
+        }
+        table {
+            border: solid black 3px;
+            width: 100%
+        }
+        input {
+            width: 97%
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+    <table>
+        <tr>
+            <td><input id="task" v-model="newTask" placeholder="Enter a new task here"></td>
+            <td><button v-on:click="addTask">Add Task</button> </td>
+        </tr>
+
+        <tr>
+            <th>To Do</th>
+            <th>Done</th>
+        </tr>
+
+        <tr>
+            <td>
+            <ul>
+                    <li v-for="task in taskList">{{task}}</li>
+            </ul>
+            </td>
+            <td>
+                <ul>
+                    <li v-for="task in doneList">{{task}}</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+        input = document.getElementById("task")
+        let app = Vue.createApp({
+                data(){
+                        return {
+                                newTask: "",
+                                taskList: [],
+                                doneList: [],
+                        }
+                },
+                methods: {
+                        addTask() {
+                                this.taskList.push(this.newTask)
+                                this.newTask = ''
+                        }
+                        },
+                computed: {}
+        })
+
+        app.mount('#app')
+
+</script>
+
+</body>
+</html>
