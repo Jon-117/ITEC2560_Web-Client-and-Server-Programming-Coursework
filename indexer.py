@@ -39,9 +39,10 @@ def generate_html_index(folder_path, base_url):
 
     # Add a back button to the page
     if folder_path != root_folder_path:
+        rel_parent_path = os.path.relpath(parent_path, folder_path)
         html_str += f"""
-        <p><a href="{base_url}{os.path.basename(parent_path)}/index.html"><i class="fas fa-arrow-up"></i> Back to {parent_name}</a></p>
-        """
+            <p><a href="{rel_parent_path}/index.html"><i class="fas fa-arrow-up"></i> Back to {parent_name}</a></p>
+            """
 
     # Add the list of contents to the page
     html_str += f"""
