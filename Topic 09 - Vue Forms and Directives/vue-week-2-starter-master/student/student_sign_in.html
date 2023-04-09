@@ -13,7 +13,13 @@
     <div id="app">
 
 
-        <!-- TODO show errors from form validation -->
+        <div class="alert alert-danger" v-if="errors.length > 0">
+            <ul>
+                <li v-for="error in errors">{{ error }}</li>
+            </ul>
+
+
+        </div>
 
 
         <div class="card add-student m-2 p-2">
@@ -22,12 +28,12 @@
             <div class="form-group">
                 <label for="name">Name</label>
                 <!-- TODO v-model newStudentName -->
-                <input id="name" class="form-control" v-model="newStudentName">
+                <input id="name" class="form-control" v-model.trim="newStudentName">
             </div>
             <div class="form-group">
                 <label for="starID">Star ID</label>
                 <!-- TODO v-model newStarID -->
-                <input id="starID" class="form-control" v-model="newStudentStarID">
+                <input id="starID" class="form-control" v-model.trim="newStudentStarID">
             </div>
             <!-- TODO v-on:click event handler -->
             <button class="btn btn-primary" v-on:click="addStudent">Add</button>
@@ -47,10 +53,12 @@
                    Each row will have a checkbox, bound to the app's data 
                    When the checkbox is checked/unchecked, the student will be signed in/out -->
 
-                    <tr v-for="student in students">
+                    <!-- v-for used to make an element for each item in a list.
+                         v-bind can be used to apply classes (and other attributes) depending upon various circumstances. -->
+                    <tr v-for="student in students" v-bind:class="{ present : student.presence, absent: !student.presence }">
                         <td>{{ student.name }}</td>
                         <td>{{ student.starID }}</td>
-                        <td>{{ student.present }}</td>
+                        <td><input type="checkbox" v-model="student.presence" v-on:change="hello_goodbye(student)"></td>
                     </tr>
 
                 </table>
@@ -58,8 +66,15 @@
         </div>
 
 
-        <!-- TODO show a message when student arrives or leaves  -->
+        <div v-if="recent_presence_change.name">
 
+            <div v-if="recent_presence_change.presence" class="alert alert-success" v-cloak>
+                Welcome, {{ recent_presence_change.name }}.
+            </div>
+            <div v-else class="alert alert-warning" v-cloak>
+                Goodbye, {{ recent_presence_change.name }}.
+            </div>
+        </div>
 
     </div>
 
@@ -71,10 +86,11 @@
                                 newStudentName: '',
                                 newStudentStarID: '',
                                 students: [
-                                        {name: 'student1', starID:'aa1234bb',present:false},
-                                        {name: 'student2', starID:'bb4321aa',present:false}
+                                        {name: 'student1', starID:'aa1234bb',presence:false},
+                                        {name: 'student2', starID:'bb4321aa',presence:false}
                                 ],
-                                errors: []
+                                errors: [],
+                                recent_presence_change: {}
                         }
                 },
                 methods: {
@@ -90,13 +106,34 @@
                                 }
 
                                 if (this.errors.length == 0){
-                                let student = {name: this.newStudentName, starID: this.newStudentStarID, present: false}
+                                let student = {name: this.newStudentName, starID: this.newStudentStarID, presence: false}
                                 this.students.push(student)
                                 this.newStudentName = ''
                                 this.newStudentStarID = ''
+
+                                        // Add sorting to the list for easier user log in
+                                this.students.sort(function (student1,student2){
+                                        // return positive number if student 1 should be sorted after student2
+                                        if (student1.name.toLowerCase() > student2.name.toLowerCase()) {
+                                                return 1
+                                        }
+                                        // return negative number if student 2 sholuld be sorted after studnet1
+                                        if (student2.name.toLowerCase() > student1.name.toLowerCase()) {
+                                                return -1
+                                        }
+                                        // return 0 if order is equivalent
+                                        if (student1.name.toLowerCase() == student2.name.toLowerCase()){
+                                                return 0
+                                        }
+                                })
                                 }
 
                         },
+                        hello_goodbye(student) {
+                                this.recent_presence_change = student
+
+
+                        }
 
                 }
         })
