@@ -2,3 +2,16 @@
     max-height: 250px;
     overflow: scroll;
 }
+
+.sketching {
+    background-color: mediumseagreen;
+    color: white;
+}
+.drawing {
+    background-color: darkred;
+    color: white;
+}
+.writing {
+    background-color: dodgerblue;
+    color: white;
+}

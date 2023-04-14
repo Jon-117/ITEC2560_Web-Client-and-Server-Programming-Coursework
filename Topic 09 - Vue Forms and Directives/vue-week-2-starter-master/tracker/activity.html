@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <label class="form-label" for="hours">How many hours did you practice for?</label>
-                    <!-- TODO use v-model to connect this input to hours data -->
+                    <!-- done use v-model to connect this input to hours data -->
                     <input id="hours" class="form-control" type="number" min="0" max="24" v-model.number="hours">
                     <small id="hours-help" class="form-text text-muted">
                         Enter a number of hours, more than 0, up to a maximum of 24
@@ -46,9 +46,9 @@
 
                 <div class="form-group">
                     <label class="form-label" for="type">What type?</label>
-                    <!-- TODO Create select element, use v-model to connect to the types -->
+                    <!-- done Create select element, use v-model to connect to the types -->
 
-                    <!-- TODO Use v-for to create option elements, one for each type -->
+                    <!-- DONE Use v-for to create option elements, one for each type -->
                     <select class="form-control" v-model="type">
                         <option v-for="activity in types.sort(function (t1,t2){
                                 if (t1 > t2) { return 1 }
@@ -81,12 +81,31 @@
                     <label class="form-check-label" for="media2">  Digital  </label>
                 </div>
 
+                <div class="form-group">Completion Status</div>
+
+                <div class="form-group">
+                    <!-- Todo - Add form control for 'completion' -->
+                    <label for="completion" class="form-label" >Completed?</label>
+                    <br>
+                    <input id="completion" type="checkbox" v-model="completion">
+                </div>
+
+                <div class="form-group">
+                    <!-- Todo - Add form control for 'note' -->
+                    <label for="note" class="form-label">Note</label>
+                    <input type="text" class="form-control" v-model="note">
+                </div>
+
                 <div>
-                    <!-- TODO Add v-on:click -->
+                    <!-- done Add v-on:click -->
                     <button class="btn btn-primary mt-2" type="button" v-on:click="submit">Add record</button>
                 </div>
+
+
                 
             </div>
+
+
         </div>
 
         <div class="card">
@@ -104,12 +123,17 @@
                             <th>Type</th>
                             <th>Media</th>
                         </tr>
-                        <!-- TODO use v-for to create one table row for each activity record -->
-                        <tr v-for="record in activityRecords">
+                        <!-- done use v-for to create one table row for each activity record -->
+                        <tr v-for="record in activityRecords" v-bind:class="{sketching: record.type == 'Sketching', drawing: record.type == 'Drawing', writing: record.type == 'Creative Writing'}">
                             <td>{{ shortDate(record.date) }}</td>
-                            <td> {{record.hours}} </td>
-                            <td> {{record.type}} </td>
-                            <td> {{record.medium}} </td>
+                            <td> {{ record.hours }} </td>
+                            <td> {{ record.type }} </td>
+                            <td> {{ record.medium }} </td>
+
+                            <!-- done - Add a table row for each of the new form inputs created.
+                                        ( 'Completed' checkmark & 'Note' text field. ) -->
+                            <td> <input type="checkbox" v-model="record.completion"> </td>
+                            <td> {{ record.note.substring(1,39) }}... </td>
                         </tr>
 
 
@@ -124,7 +148,7 @@
 
             <div class="card-body">
 
-                <!-- TODO add computed property to calculate the total hours -->
+                <!-- done add computed property to calculate the total hours -->
                 <p>You have practiced a total of {{ total_hours }} hours</p>
 
                 <!-- Challenge question! Display a list of the total hours for each type.  -->
@@ -145,11 +169,13 @@
                                 // v-model with form inputs
                                 dateString: '',
                                 hours: 1,
-                                type: 'Creative writing',
+                                type: 'Creative Writing',
                                 medium: 'Digital',
+                                completion: false,
+                                note: '',
 
                                 // selectable types
-                                types: ['Sketching','Drawing','Painting','Photobashing','Creative writing'],
+                                types: ['Sketching','Drawing', 'Creative Writing'],
 
                                 errors: []
                         }
@@ -176,7 +202,9 @@
                                                 date: date,
                                                 hours: this.hours,
                                                 type: this.type,
-                                                medium: this.medium
+                                                medium: this.medium,
+                                                completion: this.completion,
+                                                note: this.note
                                         }
 
                                         this.activityRecords.push(record)
