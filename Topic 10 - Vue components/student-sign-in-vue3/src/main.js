@@ -1,4 +1,18 @@
-import { createApp } from 'vue'
-import App from '../../../../student-sign-in-vue3/src/App.vue'
+import Vue from 'vue'
+import App from './App.vue'
+import BootstrapVue from 'bootstrap-vue'
 
-createApp(App).mount('#app')
+import StudentAPIService from '@/services/StudentService'
+
+Vue.use(BootstrapVue)
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.prototype.$student_api = StudentAPIService
+
+Vue.config.productionTip = false
+
+new Vue({
+        render: h => h(App),
+}).$mount('#app')

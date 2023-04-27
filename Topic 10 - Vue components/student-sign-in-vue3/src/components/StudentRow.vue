@@ -21,14 +21,14 @@ export default {
             if (confirm(`Delete ${this.student.name}?`)) // confirmation of delete action
             this.$emit('delete-student', this.student)
         },
-        arrivedOrLeft(student, presence) { // welome/goodbye message helper
+        arrivedOrLeft(student, presence) { // welcome/goodbye message helper
             this.$emit('student-arrived-or-left', student, presence)
         }
     }
 }
 </script>
 
-<style scoped> // stylization
+<style scoped>
 th, tr {
     width: 33%;
 }
