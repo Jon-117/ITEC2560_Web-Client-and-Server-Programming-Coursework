@@ -43,14 +43,14 @@ export default {
                                         return -1
                                 }
                                 // return 0 if order is equivalent
-                                if (student1.name.toLowerCase() == student2.name.toLowerCase()){
+                                if (student1.name.toLowerCase() === student2.name.toLowerCase()){
                                         return 0
                                 }})
                 },
                 studentArrivedOrLeft(student, presence) {
                         let updateStudent = this.students.find(function (s){
                                 if (s.name === student.name && s.starID === student.starID){
-                                        return True
+                                        return true
                                 }
                         })
                         if (updateStudent) {
@@ -69,3 +69,7 @@ export default {
         }
 }
 </script>
+
+<style>
+@import "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css";
+</style>
