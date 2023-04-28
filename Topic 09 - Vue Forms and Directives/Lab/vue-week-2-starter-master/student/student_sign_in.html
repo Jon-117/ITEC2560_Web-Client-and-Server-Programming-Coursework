@@ -105,7 +105,7 @@
                                         this.errors.push("Please enter a StarID")
                                 }
 
-                                if (this.errors.length == 0){
+                                if (this.errors.length === 0){
                                 let student = {name: this.newStudentName, starID: this.newStudentStarID, presence: false}
                                 this.students.push(student)
                                 this.newStudentName = ''
@@ -117,12 +117,12 @@
                                         if (student1.name.toLowerCase() > student2.name.toLowerCase()) {
                                                 return 1
                                         }
-                                        // return negative number if student 2 sholuld be sorted after studnet1
+                                        // return negative number if student 2 should be sorted after student1
                                         if (student2.name.toLowerCase() > student1.name.toLowerCase()) {
                                                 return -1
                                         }
                                         // return 0 if order is equivalent
-                                        if (student1.name.toLowerCase() == student2.name.toLowerCase()){
+                                        if (student1.name.toLowerCase() === student2.name.toLowerCase()){
                                                 return 0
                                         }
                                 })
