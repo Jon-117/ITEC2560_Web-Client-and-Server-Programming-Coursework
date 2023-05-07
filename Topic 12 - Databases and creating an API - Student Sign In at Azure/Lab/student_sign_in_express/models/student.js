@@ -9,11 +9,11 @@ module.exports = ( sequelize, DataTypes ) => {
     })
 
 
-    /*
-    force specifies whether to drop the table each time the app restarts.
-    true = yes, drop the table. Used when table schema changes
-    false = no, don't drop the table.
-    */
+
+    // force specifies whether to drop the table each time the app restarts.
+    // true = yes, drop the table. Used when table schema changes
+    // false = no, don't drop the table.
+
 
     Student.sync( { force: true } ).then (() => {
         console.log('Student Table synced. ')

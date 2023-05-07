@@ -1,8 +1,8 @@
-/*
-index.js sets up the sequelize connection, make the studentModel available to the database, then packages it all into the
-module.exports = db line at the end. This gives other files the ability to connect to and manipulate the student
-database by importing this file.
-*/
+
+// index.js sets up the sequelize connection, make the studentModel available to the database, then packages it all into the
+// module.exports = db line at the end. This gives other files the ability to connect to and manipulate the student
+// database by importing this file.
+
 
 let {Sequelize, DataTypes} = require('sequelize')
 
@@ -26,10 +26,10 @@ let studentModelCreate = require('./student') // function definition
 let studentModel = studentModelCreate(sequelize, DataTypes)
 
 // associate the name of the student model with the return value of the studentModelCreate function
-/*
-I really am having a hard time following this description found in vid 8  at timestamp 9:00 - 9:14
-(8. Vue/Express Student Sign In - Setting up models/index.js)
-*/
+
+// I really am having a hard time following this description found in vid 8  at timestamp 9:00 - 9:14
+// (8. Vue/Express Student Sign In - Setting up models/index.js)
+
 db[studentModel.name] = studentModel
 
 db.sequelize = sequelize // sequelize configuration
@@ -37,6 +37,5 @@ db.Sequelize = Sequelize // Sequelize library
 
 module.exports = db // export the db
 
-/*
-CJ  Suggested reading - more on module.exports https://stackify.com/node-js-module-exports/
-*/
+
+// CJ  Suggested reading - more on module.exports https://stackify.com/node-js-module-exports/
