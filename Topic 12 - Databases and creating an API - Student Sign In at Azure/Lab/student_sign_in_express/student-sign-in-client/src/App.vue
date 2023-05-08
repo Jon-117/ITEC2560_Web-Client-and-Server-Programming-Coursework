@@ -18,54 +18,51 @@ import StudentTable from "./components/StudentTable.vue";
 import StudentMessage from "./components/StudentMessage.vue";
 
 export default {
-        name: 'App',
-        components: {
-                NewStudentForm,
-                StudentTable,
-                StudentMessage,
+    name: 'App',
+    components: {
+        NewStudentForm,
+        StudentTable,
+        StudentMessage,
+    },
+    data() {
+        return {
+            students: [],
+            mostRecentStudent: {}
+        }
         },
-        data() {
-                return {
-                        students: [],
-                        mostRecentStudent: {}
-                }
+    mounted() {
+        // load all students by requesting from API
+        this.updateStudents()
         },
-        methods: {
-                newStudentAdded(student) {
-                        this.students.push(student)
-                        this.students.sort(function (student1,student2){
-                                // return positive number if student 1 should be sorted after student2
-                                if (student1.name.toLowerCase() > student2.name.toLowerCase()) {
-                                        return 1
-                                }
-                                // return negative number if student 2 should be sorted after student1
-                                if (student2.name.toLowerCase() > student1.name.toLowerCase()) {
-                                        return -1
-                                }
-                                // return 0 if order is equivalent
-                                if (student1.name.toLowerCase() === student2.name.toLowerCase()){
-                                        return 0
-                                }})
-                },
-                studentArrivedOrLeft(student, presence) {
-                        let updateStudent = this.students.find(function (s){
-                                if (s.name === student.name && s.starID === student.starID){
-                                        return true
-                                }
-                        })
-                        if (updateStudent) {
-                                updateStudent.presence = presence
-                                this.mostRecentStudent = student
-                        }
-                },
-                deleteStudent(student) {
-                        this.students = this.students.filter(function (s) {
-                                if (s !== student) {
-                                        return true
-                                }
-                        })
-                        this.mostRecentStudent = ''
-                }
+    methods: {
+        updateStudents() {
+            this.$student_api.getAllStudents().then(students => this.students = students).catch(()=> {"Can't fetch student list"})
+        },
+        newStudentAdded(student) {
+            this.$student_api.addStudent(student).then(()=>{
+                this.updateStudents()
+            })
+                .catch(err =>{
+                let msg = err.response.data.join(', ')
+                alert("Error adding student:\n" + msg)
+            })
+        },
+        studentArrivedOrLeft(student, presence) {
+            student.presence = presence
+            this.$student_api.updateStudent(student).then(() => {
+                this.mostRecentStudent = student
+                this.updateStudents()
+            }).catch(()=> {
+                alert("Can't delete student")
+            })
+
+        },
+        deleteStudent(student) {
+            this.$student_api.deleteStudent(student.id).then(() =>{
+                this.updateStudents() // update the table
+                this.mostRecentStudent = {} // clear message at bottom of the screen.
+            })
+        }
         }
 }
 </script>

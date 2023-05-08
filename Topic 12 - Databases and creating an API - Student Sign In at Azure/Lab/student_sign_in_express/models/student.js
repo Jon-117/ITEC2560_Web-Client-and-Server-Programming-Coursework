@@ -3,9 +3,9 @@
 module.exports = ( sequelize, DataTypes ) => {
     //set up structure of the database
     let Student = sequelize.define('Student', {
-        name: { type: DataTypes.STRING },
-        starID: { type: DataTypes.STRING },
-        presence: { type: DataTypes.BOOLEAN}
+        name:       { type: DataTypes.STRING,  allowNull: false },
+        starID:     { type: DataTypes.STRING,  allowNull: false, unique: true },
+        presence:   { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false }
     })
 
 
@@ -15,7 +15,7 @@ module.exports = ( sequelize, DataTypes ) => {
     // false = no, don't drop the table.
 
 
-    Student.sync( { force: true } ).then (() => {
+    Student.sync( { force: false } ).then (() => {
         console.log('Student Table synced. ')
     })
 
